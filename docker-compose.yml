@@ -1,0 +1,14 @@
+version: "3.0"
+
+services:
+  mc-server-spigot:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: kuroko3417/mc-server-spigot-1.16.3:latest
+    container_name: mc-server-spigot-1.16.3
+    environment:
+      TZ: Asia/Tokyo
+    ports:
+      - "25565:25565"
+    tty: true
