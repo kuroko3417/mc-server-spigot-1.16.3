@@ -24,7 +24,11 @@ RUN mkdir -p $JAR_PATH
 COPY config/eula.txt $JAR_PATH
 COPY config/$JAR_FILE_NAME $JAR_PATH
 
-WORKDIR $JAR_PATH
-ENTRYPOINT [ "java" ]
+COPY docker-entorypoint.sh /entorypoint.sh
+COPY config/minecraft.sh /minecraft.sh
 
-CMD [ "-Xmx1024M", "-Xms1024M", "-jar", "/opt/minecraft/spigot-1.16.3.jar", "nogui" ]
+RUN chmod u+x /entorypoint.sh
+RUN	chmod u+x /minecraft.sh
+
+WORKDIR $JAR_PATH
+ENTRYPOINT [ "/entorypoint.sh" ]
